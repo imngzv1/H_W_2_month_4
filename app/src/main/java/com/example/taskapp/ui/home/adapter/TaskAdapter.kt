@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.taskapp.databinding.ItemTaskBinding
 import com.example.taskapp.model.Task
 
-class TaskAdapter: RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+
+class TaskAdapter(param: Any, param1: Any?) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
     private val data= arrayListOf<Task>()
     fun addTask(task: Task){
         data.add(0,task)
@@ -32,4 +33,5 @@ class TaskAdapter: RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
             binding.tvDesc.text=task.desc
         }
     }
+
 }

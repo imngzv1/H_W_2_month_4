@@ -13,12 +13,13 @@ import com.example.taskapp.R
 import com.example.taskapp.databinding.FragmentHomeBinding
 import com.example.taskapp.model.Task
 
+
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val adapter= TaskAdapter()
+    private var adapter: TaskAdapter? =null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,6 +31,12 @@ class HomeFragment : Fragment() {
         return _binding?.root ?: binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -40,7 +47,7 @@ class HomeFragment : Fragment() {
         binding.recyclerView.adapter = adapter
         setFragmentResultListener(TaskFragment.TASK_REQUEST) { _, bundle ->
             val result = bundle.getSerializable(TaskFragment.TASK_KEY) as Task
-            adapter.addTask(result)
+            adapter?.addTask(result)
         }
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.taskFragment)
